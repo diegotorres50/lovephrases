@@ -1,3 +1,7 @@
+love_phrases_app:
+    resource: "@LovePhrasesAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

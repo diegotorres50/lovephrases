@@ -1,0 +1,4 @@
+services:
+#    love_phrases_app.example:
+#        class: LovePhrases\AppBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,3 @@
+love_phrases_app_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: LovePhrasesAppBundle:Default:index }
