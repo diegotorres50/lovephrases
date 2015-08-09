@@ -1,5 +1,7 @@
+# @diegotorres50: import routes from a controller directory
 love_phrases_app:
-    resource: "@LovePhrasesAppBundle/Resources/config/routing.yml"
+    resource: "@LovePhrasesAppBundle/Controller"
+    type:     annotation
     prefix:   /
 
 app:
