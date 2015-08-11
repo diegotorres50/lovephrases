@@ -10,10 +10,11 @@ use Symfony\Component\HttpFoundation\Request; //@diegotorres50: necesario para v
 class DefaultController extends Controller
 {
 	 /**
-     * @Route("/{var}", name="lovephrases_default_homepage") 
+     * @Route("/", name="lovephrases_default_homepage") 
      */
-    public function indexAction($var)
+    public function indexAction(Request $request)
     {
-        return new Response('Hola pues don ' . $var);
+
+        return $this->render('LovePhrasesAppBundle:Default:index.html.twig', array('var' => 'Any Value Here'));
     }
 }
