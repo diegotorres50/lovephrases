@@ -27,6 +27,117 @@ class Model
 
     }
 
+    public function getArticleTags($article_id)
+    {
+        //@diegotorres50: metodo que consulta todos los articulos del home
+        //
+       
+        $sql = array();
+
+        //Query para consultas
+        $sql[] = "SELECT tags.tag_alias, tags.tag_label, tags.tag_path";
+        $sql[] = "FROM tags, article_tags, articles";
+        $sql[] = "where tags.tag_alias = article_tags.tag_alias and";
+        $sql[] = "article_tags.article_id = articles.article_id and";
+        $sql[] = "articles.article_id = " . $article_id;
+        $sql[] = "order by 1;";
+
+        //Armamos la consulta completa con espacios entre los segmentos del query
+        $sql = implode(" ", $sql);
+
+        $result = mysqli_query($this->conexion, $sql);
+
+        if(!$result) {
+
+            return array('errorMsg' => 'No ha sido posible realizar la consulta de parametros por articulo: ' . mysqli_error($this->conexion));
+        }
+
+
+        // Numeric array
+        //$row=mysqli_fetch_array($result,MYSQLI_NUM);
+        //printf ("%s (%s)\n",$row[0],$row[1]);
+
+        // Associative array
+        //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        //printf ("%s (%s)\n",$row["user_id"],$row["user_role"]);
+
+        $rows_found = array();
+
+        while ($row = mysqli_fetch_assoc($result))
+        {
+
+            //$row es un array de columnas
+            $row = array_filter($row); //Esto evita que se filtren valores nulos, con un solo valor nulo anula otro array al concatenarse
+
+            $rows_found[] = $row; //Solo valores no nulos
+        }
+
+        // Free result set
+        mysqli_free_result($result);  
+        
+        //mysqli_close($this->conexion); No cerremos la conexion para reusarla    
+
+        $data = array($rows_found); //Todas las filas
+
+        return $data;
+
+    }
+
+    public function getArticleParameters($article_id)
+    {
+        //@diegotorres50: metodo que consulta todos los articulos del home
+        //
+       
+        $sql = array();
+
+        //Query para consultas
+        $sql[] = "SELECT article_params.param_alias, article_params.param_value FROM parameters, article_params, articles";
+        $sql[] = "where parameters.param_alias = article_params.param_alias and";
+        $sql[] = "article_params.article_id = articles.article_id and";
+        $sql[] = "articles.article_id = " . $article_id;
+        $sql[] = "order by 1;";
+
+        //Armamos la consulta completa con espacios entre los segmentos del query
+        $sql = implode(" ", $sql);
+
+        $result = mysqli_query($this->conexion, $sql);
+
+        if(!$result) {
+
+            return array('errorMsg' => 'No ha sido posible realizar la consulta de parametros por articulo: ' . mysqli_error($this->conexion));
+        }
+
+
+        // Numeric array
+        //$row=mysqli_fetch_array($result,MYSQLI_NUM);
+        //printf ("%s (%s)\n",$row[0],$row[1]);
+
+        // Associative array
+        //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        //printf ("%s (%s)\n",$row["user_id"],$row["user_role"]);
+
+        $rows_found = array();
+
+        while ($row = mysqli_fetch_assoc($result))
+        {
+
+            //$row es un array de columnas
+            $row = array_filter($row); //Esto evita que se filtren valores nulos, con un solo valor nulo anula otro array al concatenarse
+
+            $rows_found[] = $row; //Solo valores no nulos
+        }
+
+        // Free result set
+        mysqli_free_result($result);  
+        
+        //mysqli_close($this->conexion); No cerremos la conexion para reusarla    
+
+        $data = array($rows_found); //Todas las filas
+
+        return $data;
+
+    }
+
     public function getHomePrimaryArticles()
     {
         //@diegotorres50: metodo que consulta todos los articulos del home

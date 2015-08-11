@@ -75,7 +75,7 @@ class ContentController extends Controller
             $errorsList[]['error'] = 'No sections';
         } else $data['sections'] = $getSections['rows_found'];
 
-        //Tratamos de consultar la lista de usuarios en la tabla de mysql
+        //Tratamos de consultar la lista de articulos en la tabla de mysql
         $getHomePrimaryArticles = $m->getHomePrimaryArticles();
 
         //var_dump($getHomePrimaryArticles); exit;
@@ -89,7 +89,24 @@ class ContentController extends Controller
             $errorsList[]['error'] = 'No articles';
         } else  {
 
-            $data['articles'] = $getHomePrimaryArticles[0]; //ojo, el array que devuelve la consulta no debe contener ni un solo valor nulo pues un valor nulo anula todo el array 
+            //$data['articles'] = $getHomePrimaryArticles[0]; //ojo, el array que devuelve la consulta no debe contener ni un solo valor nulo pues un valor nulo anula todo el array 
+
+            $_articles = array();
+
+            $_i = 0;
+
+            foreach ($getHomePrimaryArticles[0] as $article) {
+                //Tratamos de consultar la lista de parametros por articulo en la tabla de mysql
+                $_articles[$_i] = $article;
+                $_parameter = $m->getArticleParameters($article['article_id']);  //OJO FALTA VALIDAR EL RESULTADO DE LA FUNCION  
+                $_tag = $m->getArticleTags($article['article_id']);  //OJO FALTA VALIDAR EL RESULTADO DE LA FUNCION     
+                $_articles[$_i]['parameters'] = $_parameter[0];
+                $_articles[$_i]['tags'] = $_tag[0];
+                $_i ++;        
+            }   
+            
+            $data['articles'] = $_articles;
+
         }
 
         //
