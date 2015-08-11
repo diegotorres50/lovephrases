@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-08-2015 a las 22:16:25
+-- Tiempo de generación: 11-08-2015 a las 04:49:51
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.5.24
 
@@ -151,7 +151,9 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
 --
 
 INSERT INTO `article_tags` (`article_id`, `tag_alias`) VALUES
-(1, 'best-love');
+(1, 'best-love'),
+(2, 'best-love'),
+(2, 'bible-love');
 
 -- --------------------------------------------------------
 
@@ -216,13 +218,14 @@ INSERT INTO `sections` (`section_alias`, `section_name`, `section_path`, `sectio
 --
 -- Estructura de tabla para la tabla `tags`
 --
--- Creación: 08-08-2015 a las 00:53:21
+-- Creación: 11-08-2015 a las 02:26:58
 --
 
 DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `tag_alias` varchar(45) NOT NULL,
-  `tag_label` varchar(45) NOT NULL
+  `tag_label` varchar(45) NOT NULL,
+  `tag_path` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -233,9 +236,9 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- Volcado de datos para la tabla `tags`
 --
 
-INSERT INTO `tags` (`tag_alias`, `tag_label`) VALUES
-('best-love', 'Best Love'),
-('bible-love', 'Bible Love');
+INSERT INTO `tags` (`tag_alias`, `tag_label`, `tag_path`) VALUES
+('best-love', 'Best Love', '/best-love'),
+('bible-love', 'Bible Love', '/bible-love');
 
 --
 -- Índices para tablas volcadas

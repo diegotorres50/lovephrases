@@ -124,7 +124,7 @@ class Model
             //$row es un array de columnas
             $row = array_filter($row); //Esto evita que se filtren valores nulos, con un solo valor nulo anula otro array al concatenarse
 
-            $rows_found[] = $row; //Solo valores no nulos
+            $rows_found[$row['param_alias']] = $row['param_value']; //Solo valores no nulos
         }
 
         // Free result set
