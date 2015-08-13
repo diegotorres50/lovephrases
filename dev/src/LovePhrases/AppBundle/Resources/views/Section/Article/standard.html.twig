@@ -1,0 +1,52 @@
+<article class="entry box-item format-standard ur-three columns">
+	<div class="box-wrap">
+
+		{% if data.article_section is defined and data.article_section is not null and data.article_section is not empty %}
+			<span class="entry-section">
+				<a href="{{ data.section_path }}">{{ data.section_name }}</a>
+			</span>
+		{% endif %}
+
+		{% if data.article_img is defined and data.article_img is not null and data.article_img is not empty %}
+			<figure class="entry-thumb">
+				<a href="#article-{{ data.article_id }}" name="article-{{ data.article_id }}"> {#para anclar la nota con la url#}
+					<img src="{{ data.article_img }}" alt="{{ data.article_title }}">
+				</a>
+			</figure>
+		{% endif %}
+			
+		<div class="entry-content">
+
+			{% if data.article_title is defined and data.article_title is not null and data.article_title is not empty %}
+				<h1 class="entry-title">
+					<a href="">{{ data.article_title }}</a>
+				</h1>
+			{% endif %}	
+
+			{% if data.article_modified is defined and data.article_modified is not null and data.article_modified is not empty %}
+				<time datetime="{{ data.article_modified }}">{{ data.article_modified }}</time>
+			{% endif %}
+
+			{% if data.article_lead is defined and data.article_lead is not null and data.article_lead is not empty %}
+				<p>{{ data.article_lead }} 
+					{% if data.article_author is defined and data.article_author is not null and data.article_author is not empty %}
+						<cite>-{{ data.article_author }}</cite>
+					{% endif %}	
+				</p>
+			{% endif %}
+
+		</div>
+
+		<!-- Sharingtool
+  		================================================== -->
+		{{ include('LovePhrasesAppBundle:Common:sharingtool.html.twig', { 'data': data }) }}
+
+
+		<!-- Tags Module
+  		================================================== -->
+  		{% if data.tags is defined and data.tags is not null and data.tags is not empty %}
+			{{ include('LovePhrasesAppBundle:Common:tagsmodule.html.twig', { 'data': data.tags }) }}
+		{% endif %}
+
+	</div>
+</article>

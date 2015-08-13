@@ -15,6 +15,12 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
-        return $this->render('LovePhrasesAppBundle:Default:index.html.twig', array('var' => 'Any Value Here'));
+        $path = 'bundles/lovephrasesapp/content/home.json';
+		$content = file_get_contents($path);
+		$json = json_decode($content, true);
+
+		//var_dump($json); exit;
+
+        return $this->render('LovePhrasesAppBundle:Default:index.html.twig', array('data' => $json));
     }
 }

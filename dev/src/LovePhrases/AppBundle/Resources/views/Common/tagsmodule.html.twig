@@ -1,0 +1,6 @@
+<div class="entry-meta"><span><strong>tags</strong><span>: 
+	{# recorremos el array de tags del articulo #}
+	{% for tag in data %}
+		<a class="landingtag" href="{{ tag.tag_path }}"  title="{{ tag.tag_label }}">{{ tag.tag_label }}</a>
+	{% endfor %}	
+</div>
