@@ -7,6 +7,16 @@
 			</span>
 		{% endif %}
 
+		{% if data.article_modified is defined and data.article_modified is not null and data.article_modified is not empty %}
+			<time datetime="{{ data.article_modified }}">{{ data.article_modified }}</time>
+		{% endif %}
+
+		{% if data.article_title is defined and data.article_title is not null and data.article_title is not empty %}
+			<h2 class="entry-title">
+				<a href="">{{ data.article_title }}</a>
+			</h2>
+		{% endif %}	
+
 		{% if data.article_img is defined and data.article_img is not null and data.article_img is not empty %}
 			<figure class="entry-thumb">
 				<a href="#article-{{ data.article_id }}" name="article-{{ data.article_id }}"> {#para anclar la nota con la url#}
@@ -16,16 +26,6 @@
 		{% endif %}
 			
 		<div class="entry-content">
-
-			{% if data.article_title is defined and data.article_title is not null and data.article_title is not empty %}
-				<h1 class="entry-title">
-					<a href="">{{ data.article_title }}</a>
-				</h1>
-			{% endif %}	
-
-			{% if data.article_modified is defined and data.article_modified is not null and data.article_modified is not empty %}
-				<time datetime="{{ data.article_modified }}">{{ data.article_modified }}</time>
-			{% endif %}
 
 			{% if data.article_lead is defined and data.article_lead is not null and data.article_lead is not empty %}
 				<p>{{ data.article_lead }} 
@@ -41,6 +41,9 @@
   		================================================== -->
 		{{ include('LovePhrasesAppBundle:Common:sharingtool.html.twig', { 'data': data }) }}
 
+		{% if data.article_credit is defined and data.article_credit is not null and data.article_credit is not empty %}
+			<span><strong>Source: </strong>{{ data.article_credit }}</span>
+		{% endif %}
 
 		<!-- Tags Module
   		================================================== -->

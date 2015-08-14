@@ -9,12 +9,16 @@ use Symfony\Component\HttpFoundation\Response; //@diegotorres50: para el respons
 use LovePhrases\AppBundle\Model\Model; //@diegotorres50: la logica del negocio para trabajar con mysql
 use Symfony\Component\HttpFoundation\JsonResponse; //@diegotorres50 para responder un json
 
+//The Filesystem class is the unique endpoint for filesystem operations:
+use Symfony\Component\Filesystem\Filesystem; //@diegotorres50 para tratamiento de archivos
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface; //@diegotorres50 manejo de erroes con archivos
+
 class ContentController extends Controller
 {
 	 /**
-     * @Route("/content/home", name="lovephrases_content_home") 
+     * @Route("/content/home/{var}", defaults={"var" = "development"}, name="lovephrases_content_home") 
      */
-    public function homeAction(Request $request)
+    public function homeAction(Request $request, $var)
     {
 
         $thereIsError = FALSE;
@@ -25,6 +29,8 @@ class ContentController extends Controller
         $data = array();
 
         $datetime = new \DateTime("now");
+
+        if(!empty($var) && $var != 'production') $data['env'] = $var; //Para mostrar que esta en caliente el json pero no se esta guardando
 
         $data['datetime'] = $datetime->format('Y-m-d H:i:s');
         $data['alias'] = 'home';
@@ -112,14 +118,37 @@ class ContentController extends Controller
         //
         if($thereIsError) $data = $errorsList;
 
-        //JSON response: http://symfony.com/doc/current/components/http_foundation/introduction.html    
-        $response = new JsonResponse();
-        $response->setData($data);
+        //JSON response: http://symfony.com/doc/current/components/http_foundation/introduction.html   
+        //@diegotorres50 prefiero no usar este metodo porque me ponen textos de cabacere, usare json_encode() 
+        //$response = new JsonResponse();
+        //$response->setData($data);
 
+        //Codificamos el array en formato json
+        $response = json_encode($data);
 
-        //return new Response($response);
+        //Si en la url llega el parametro con el valor 'production' generamos el archivo fisico del feed
+        if($var == 'production') {
+            // 
+            //Preparamos el filesystem para guardar el json en un archivo fisico
+            $fs = new Filesystem();
+
+            //Ruta del directorio de contenido
+            $content_path = $this->container->getParameter('kernel.root_dir') . '/../web/bundles/lovephrasesapp/content/';
+
+            //Nombre del archivo home
+            $json_file = 'home.json';
+
+            try {
+                //Con el metodo dumpfile() guardamos el responseen un archivo
+                $fs->dumpFile($content_path . $json_file, $response);
+            } catch (IOExceptionInterface $e) {
+                echo "An error occurred while creating your directory at ".$e->getPath();
+            }
+        }
+            
+        return new Response($response);
         //
-        return $response;
+        //return $response; @diegotorres50 use esto si usa JsonResponse()
     }
 
 }

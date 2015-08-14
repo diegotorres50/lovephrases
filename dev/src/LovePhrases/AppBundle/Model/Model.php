@@ -146,7 +146,7 @@ class Model
         $sql = array();
 
         //Query para consultas
-        $sql[] = "SELECT articles.article_id, articles.article_modified, articles.article_created, articles.article_title, articles.article_alias, articles.article_lead, articles.article_description, articles.article_section, sections.section_name, sections.section_path, articles.article_img, articles.article_type, articles.article_author, articles.article_credit"; 
+        $sql[] = "SELECT articles.article_id, DATE_FORMAT(articles.article_modified,'%d/%m/%Y') as article_modified, DATE_FORMAT(articles.article_created,'%d/%m/%Y') as article_created, articles.article_title, articles.article_alias, articles.article_lead, articles.article_description, articles.article_section, sections.section_name, sections.section_path, articles.article_img, articles.article_type, articles.article_author, articles.article_credit"; 
         $sql[] = "FROM articles, article_params, parameters, sections";
         $sql[] = "where articles.article_id = article_params.article_id and";
         $sql[] = "article_params.param_alias = parameters.param_alias and";
@@ -155,7 +155,7 @@ class Model
         $sql[] = "article_params.param_value = 1 and";
         $sql[] = "articles.article_status = 'PUBLISHED' and";
         $sql[] = "articles.article_position = 'PRIMARY'";
-        $sql[] = "order by articles.article_modified desc, articles.article_home_order asc;";
+        $sql[] = "order by articles.article_home_order asc;";
 
         //Armamos la consulta completa con espacios entre los segmentos del query
         $sql = implode(" ", $sql);

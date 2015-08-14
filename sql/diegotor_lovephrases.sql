@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-08-2015 a las 04:49:51
+-- Tiempo de generación: 14-08-2015 a las 04:25:38
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.5.24
 
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `article_description` text,
   `article_status` set('PENDING','PUBLISHED') NOT NULL DEFAULT 'PENDING',
   `article_section` varchar(45) NOT NULL,
-  `article_img` varchar(45) DEFAULT NULL,
-  `article_type` set('IMAGE','VIDEO','QUOTE','AUDIO') NOT NULL DEFAULT 'IMAGE',
+  `article_img` varchar(512) DEFAULT NULL,
+  `article_type` set('IMAGE','GALLERY','STANDARD','LINK','VIDEO','QUOTE','AUDIO') NOT NULL DEFAULT 'IMAGE',
   `article_author` varchar(45) DEFAULT NULL,
   `article_credit` varchar(45) NOT NULL DEFAULT 'lovephrases.com',
   `article_position` set('PRIMARY','SECUNDARY') NOT NULL DEFAULT 'SECUNDARY',
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 INSERT INTO `articles` (`article_id`, `article_title`, `article_alias`, `article_lead`, `article_description`, `article_status`, `article_section`, `article_img`, `article_type`, `article_author`, `article_credit`, `article_position`, `article_section_order`, `article_home_order`, `article_created`, `article_modified`) VALUES
-(1, 'When I am with you...', 'when-i-am-with-you', 'When I am with you, the only place I want to be is closer', NULL, 'PUBLISHED', 'best-love', '/public/content/1.jpg', 'IMAGE', 'Ritu Ghatourey', 'http://lovequotesforhimher.facts.co', 'PRIMARY', 0, 1, '0000-00-00 00:00:00', '2015-08-08 21:57:44'),
-(2, 'Within you, I lose myself', 'within-you-i-lose-myself', 'Within you, I lose myself. Without you, I find myself wanting to be lost again.', NULL, 'PUBLISHED', 'best-love', '/public/content/2.jpg', 'IMAGE', NULL, 'http://lovequotesforhimher.facts.co', 'PRIMARY', 1, 0, '2015-08-08 09:57:38', '2015-08-08 09:57:38');
+(1, 'When I am with you...', 'when-i-am-with-you', 'When I am with you, the only place I want to be is closer', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/broken-love-phrases/pic1.jpg', 'STANDARD', 'Ritu Ghatourey', 'lovequotesforhimher.facts.co', 'PRIMARY', 0, 1, '0000-00-00 00:00:00', '2015-08-13 21:20:27'),
+(2, 'Within you, I lose myself', 'within-you-i-lose-myself', 'Within you, I lose myself. Without you, I find myself wanting to be lost again.', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/broken-love-phrases/pic2.jpg', 'STANDARD', NULL, 'lovequotesforhimher.facts.co', 'PRIMARY', 1, 0, '2015-08-08 09:57:38', '2015-08-13 21:20:27');
 
 --
 -- Disparadores `articles`
@@ -207,11 +207,11 @@ CREATE TABLE IF NOT EXISTS `sections` (
 --
 
 INSERT INTO `sections` (`section_alias`, `section_name`, `section_path`, `section_order`) VALUES
-('best-love', 'Best Love', '/best-love', 0),
-('bible-love', 'Bible Love', '/bible-love', 1),
-('broken-love', 'Broken Love', '/broken-love', 2),
-('cheesy-love', 'Cheesy Love', '/cheesy-love', 3),
-('crazy-love', 'Crazy Love', '/crazy-love', 4);
+('for-boyfriend', 'For Boyfriend', '/for-boyfriend', 1),
+('for-broken-heart', 'For Broken Heart', '/for-broken-heart', 2),
+('for-her', 'For Her', '/for-her', 3),
+('for-him', 'For Him', '/for-him', 4),
+('for-making-love', 'For Making Love', '/for-making-love', 0);
 
 -- --------------------------------------------------------
 
