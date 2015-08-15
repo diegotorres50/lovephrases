@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-08-2015 a las 04:25:38
+-- Tiempo de generación: 15-08-2015 a las 05:06:08
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.5.24
 
@@ -61,8 +61,27 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 INSERT INTO `articles` (`article_id`, `article_title`, `article_alias`, `article_lead`, `article_description`, `article_status`, `article_section`, `article_img`, `article_type`, `article_author`, `article_credit`, `article_position`, `article_section_order`, `article_home_order`, `article_created`, `article_modified`) VALUES
-(1, 'When I am with you...', 'when-i-am-with-you', 'When I am with you, the only place I want to be is closer', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/broken-love-phrases/pic1.jpg', 'STANDARD', 'Ritu Ghatourey', 'lovequotesforhimher.facts.co', 'PRIMARY', 0, 1, '0000-00-00 00:00:00', '2015-08-13 21:20:27'),
-(2, 'Within you, I lose myself', 'within-you-i-lose-myself', 'Within you, I lose myself. Without you, I find myself wanting to be lost again.', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/broken-love-phrases/pic2.jpg', 'STANDARD', NULL, 'lovequotesforhimher.facts.co', 'PRIMARY', 1, 0, '2015-08-08 09:57:38', '2015-08-13 21:20:27');
+(1, 'When I am with you...', 'when-i-am-with-you', 'When I am with you, the only place I want to be is closer', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/for-broken-heart/1.jpg', 'STANDARD', 'Ritu Ghatourey', 'facts.co', 'PRIMARY', 0, 0, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(2, 'Within you, I lose myself', 'within-you-i-lose-myself', 'Within you, I lose myself. Without you, I find myself wanting to be lost again.', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/for-broken-heart/2.jpg', 'STANDARD', 'Nicholas Sparks', 'facts.co', 'PRIMARY', 1, 1, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(3, 'You are every reason', 'You-are-every-reason', 'You are every reason, every hope and every dream I''ve ever had', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/for-broken-heart/3.jpg', 'STANDARD', 'F. Scott Fitzgerald', 'facts.co', 'PRIMARY', 2, 2, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(4, 'If you live to be a hundred', 'here-your-alias', 'If you live to be a hundred, I want to live to be a hundred minus one day so I never have to live without you', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/for-broken-heart/4.jpg', 'STANDARD', 'Rabindranath Tagore', 'facts.co', 'PRIMARY', 3, 3, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(5, 'When I am with you...', 'here-your-alias', 'You''re special to me in every way. Thank you for being who you are and for letting me be myself', NULL, 'PUBLISHED', 'for-broken-heart', '/bundles/lovephrasesapp/content/love-phrases/for-broken-heart/5.jpg', 'STANDARD', 'Valerie Lombardo', 'facts.co', 'PRIMARY', 4, 4, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(6, 'Within you, I lose myself', 'here-your-alias', 'If I could be anything in the world I would want to be a teardrop because I would be born in your eyes, live on your cheeks, and die on your lips', NULL, 'PUBLISHED', 'for-making-love', '/bundles/lovephrasesapp/content/love-phrases/for-making-love/1.jpg', 'STANDARD', 'George Moore', 'facts.co', 'PRIMARY', 5, 5, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(7, 'You are every reason', 'here-your-alias', 'I will always care for you, even if we''re not together and even if we''re far, far away from each other', NULL, 'PUBLISHED', 'for-making-love', '/bundles/lovephrasesapp/content/love-phrases/for-making-love/2.jpg', 'STANDARD', 'Roy Croft', 'facts.co', 'PRIMARY', 6, 6, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(8, 'If you live to be a hundred', 'here-your-alias', 'If I had a flower for every time I thought of you, I could walk in my garden forever', NULL, 'PUBLISHED', 'for-making-love', '/bundles/lovephrasesapp/content/love-phrases/for-making-love/3.jpg', 'STANDARD', 'Bill Wilson', 'facts.co', 'PRIMARY', 7, 7, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(9, 'When I am with you...', 'here-your-alias', 'I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close ', NULL, 'PUBLISHED', 'for-making-love', '/bundles/lovephrasesapp/content/love-phrases/for-making-love/4.jpg', 'STANDARD', 'Valerie Lombardo', 'facts.co', 'PRIMARY', 8, 8, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(10, 'Within you, I lose myself', 'here-your-alias', 'If kisses were stars, I''d give you the sky. \nIf touches were tears, I would cry. \nIf love was water, I''d give you the sea.\nAnd be with you for all eternity.', NULL, 'PUBLISHED', 'for-making-love', '/bundles/lovephrasesapp/content/love-phrases/for-making-love/5.jpg', 'STANDARD', 'A.A. Milne', 'facts.co', 'PRIMARY', 9, 9, '2015-08-14 21:37:16', '2015-08-14 21:37:16'),
+(11, 'You are every reason', 'here-your-alias', 'When I am with you, the only place I want to be is closer', NULL, 'PUBLISHED', 'for-her', '/bundles/lovephrasesapp/content/love-phrases/for-her/1.jpg', 'IMAGE', 'Ritu Ghatourey', 'facts.co', 'PRIMARY', 10, 10, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(12, 'If you live to be a hundred', 'here-your-alias', 'Within you, I lose myself. Without you, I find myself wanting to be lost again.', NULL, 'PUBLISHED', 'for-her', '/bundles/lovephrasesapp/content/love-phrases/for-her/2.jpg', 'LINK', 'Nicholas Sparks', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(13, 'Within you, I lose myself', 'here-your-alias', 'You are every reason, every hope and every dream I''ve ever had', NULL, 'PUBLISHED', 'for-her', '/bundles/lovephrasesapp/content/love-phrases/for-her/3.jpg', 'VIDEO', 'F. Scott Fitzgerald', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(14, 'You are every reason', 'here-your-alias', 'If you live to be a hundred, I want to live to be a hundred minus one day so I never have to live without you', NULL, 'PUBLISHED', 'for-her', '/bundles/lovephrasesapp/content/love-phrases/for-her/4.jpg', 'QUOTE', 'Rabindranath Tagore', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(15, 'If you live to be a hundred', 'here-your-alias', 'You''re special to me in every way. Thank you for being who you are and for letting me be myself', NULL, 'PUBLISHED', 'for-her', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'AUDIO', 'Valerie Lombardo', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(16, 'When I am with you...', 'here-your-alias', 'If I could be anything in the world I would want to be a teardrop because I would be born in your eyes, live on your cheeks, and die on your lips', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'George Moore', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(17, 'Within you, I lose myself', 'here-your-alias', 'I will always care for you, even if we''re not together and even if we''re far, far away from each other', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'Roy Croft', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(18, 'You are every reason', 'here-your-alias', 'If I had a flower for every time I thought of you, I could walk in my garden forever', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'Bill Wilson', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(19, 'If you live to be a hundred', 'here-your-alias', 'I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close ', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'Valerie Lombardo', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(20, 'When I am with you...', 'here-your-alias', 'I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close ', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'A.A. Milne', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17'),
+(21, 'When I am with you...', 'here-your-alias', 'I love you without knowing how, or when, or from where. I love you simply, without problems or pride: I love you in this way because I do not know any other way of loving but this, in which there is no I or you, so intimate that your hand upon my chest is my hand, so intimate that when I fall asleep your eyes close ', NULL, 'PUBLISHED', 'for-him', '/bundles/lovephrasesapp/content/love-phrases/for-her/5.jpg', 'STANDARD', 'Bill Wilson', 'facts.co', 'SECUNDARY', 127, 127, '2015-08-14 21:37:17', '2015-08-14 21:37:17');
 
 --
 -- Disparadores `articles`
@@ -119,10 +138,27 @@ CREATE TABLE IF NOT EXISTS `article_params` (
 --
 
 INSERT INTO `article_params` (`article_id`, `param_alias`, `param_value`) VALUES
-(1, 'featured', 'className1 className2'),
 (1, 'home', '1'),
-(1, 'sharemetool', '1'),
-(2, 'home', '1');
+(2, 'home', '1'),
+(3, 'home', '1'),
+(4, 'home', '1'),
+(5, 'home', '1'),
+(6, 'home', '1'),
+(7, 'home', '1'),
+(8, 'home', '1'),
+(9, 'home', '1'),
+(10, 'home', '1'),
+(11, 'home', '1'),
+(12, 'home', '1'),
+(13, 'home', '1'),
+(14, 'home', '1'),
+(15, 'home', '1'),
+(16, 'home', '1'),
+(17, 'home', '1'),
+(18, 'home', '1'),
+(19, 'home', '1'),
+(20, 'home', '1'),
+(21, 'home', '1');
 
 -- --------------------------------------------------------
 
@@ -151,9 +187,90 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
 --
 
 INSERT INTO `article_tags` (`article_id`, `tag_alias`) VALUES
-(1, 'best-love'),
-(2, 'best-love'),
-(2, 'bible-love');
+(1, 'for-broken-heart'),
+(1, 'for-her'),
+(1, 'for-him'),
+(1, 'for-making-love'),
+(2, 'for-broken-heart'),
+(2, 'for-her'),
+(2, 'for-him'),
+(2, 'for-making-love'),
+(3, 'for-broken-heart'),
+(3, 'for-her'),
+(3, 'for-him'),
+(3, 'for-making-love'),
+(4, 'for-broken-heart'),
+(4, 'for-her'),
+(4, 'for-him'),
+(4, 'for-making-love'),
+(5, 'for-broken-heart'),
+(5, 'for-her'),
+(5, 'for-him'),
+(5, 'for-making-love'),
+(6, 'for-broken-heart'),
+(6, 'for-her'),
+(6, 'for-him'),
+(6, 'for-making-love'),
+(7, 'for-broken-heart'),
+(7, 'for-her'),
+(7, 'for-him'),
+(7, 'for-making-love'),
+(8, 'for-broken-heart'),
+(8, 'for-her'),
+(8, 'for-him'),
+(8, 'for-making-love'),
+(9, 'for-broken-heart'),
+(9, 'for-her'),
+(9, 'for-him'),
+(9, 'for-making-love'),
+(10, 'for-broken-heart'),
+(10, 'for-her'),
+(10, 'for-him'),
+(10, 'for-making-love'),
+(11, 'for-broken-heart'),
+(11, 'for-her'),
+(11, 'for-him'),
+(11, 'for-making-love'),
+(12, 'for-broken-heart'),
+(12, 'for-her'),
+(12, 'for-him'),
+(12, 'for-making-love'),
+(13, 'for-broken-heart'),
+(13, 'for-her'),
+(13, 'for-him'),
+(13, 'for-making-love'),
+(14, 'for-broken-heart'),
+(14, 'for-her'),
+(14, 'for-him'),
+(14, 'for-making-love'),
+(15, 'for-broken-heart'),
+(15, 'for-her'),
+(15, 'for-him'),
+(15, 'for-making-love'),
+(16, 'for-broken-heart'),
+(16, 'for-her'),
+(16, 'for-him'),
+(16, 'for-making-love'),
+(17, 'for-broken-heart'),
+(17, 'for-her'),
+(17, 'for-him'),
+(17, 'for-making-love'),
+(18, 'for-broken-heart'),
+(18, 'for-her'),
+(18, 'for-him'),
+(18, 'for-making-love'),
+(19, 'for-broken-heart'),
+(19, 'for-her'),
+(19, 'for-him'),
+(19, 'for-making-love'),
+(20, 'for-broken-heart'),
+(20, 'for-her'),
+(20, 'for-him'),
+(20, 'for-making-love'),
+(21, 'for-broken-heart'),
+(21, 'for-her'),
+(21, 'for-him'),
+(21, 'for-making-love');
 
 -- --------------------------------------------------------
 
@@ -237,8 +354,52 @@ CREATE TABLE IF NOT EXISTS `tags` (
 --
 
 INSERT INTO `tags` (`tag_alias`, `tag_label`, `tag_path`) VALUES
-('best-love', 'Best Love', '/best-love'),
-('bible-love', 'Bible Love', '/bible-love');
+('best-love-phrases', 'Best Love', '/tags/best-love-phrases'),
+('best-whatsapp-status', 'Best Whatsapp Status', '/tags/best-whatsapp-status'),
+('bible-love-phrases', 'Bible Love', '/tags/bible-love-phrases'),
+('broken-heart-phrases', 'Broken Heart', '/tags/broken-heart-phrases'),
+('cool-whatsapp-status', 'Cool Whatsapp Status', '/tags/cool-whatsapp-status'),
+('crazy-love-phrases', 'Crazy Love', '/tags/crazy-love-phrases'),
+('deep-love-phrases', 'Deep Love', '/tags/deep-love-phrases'),
+('disney-love-phrases', 'Disney Love', '/tags/disney-love-phrases'),
+('falling-in-love-phrases', 'Falling In Love', '/tags/falling-in-love-phrases'),
+('family-love-phrases', 'Family Love', '/tags/family-love-phrases'),
+('famous-love-phrases', 'Famous Love', '/tags/famous-love-phrases'),
+('finding-love-phrases', 'Finding Love', '/tags/finding-love-phrases'),
+('first-love-phrases', 'First Love', '/tags/first-love-phrases'),
+('for-boyfriend', 'For Boyfriend', '/tags/for-boyfriend'),
+('for-broken-heart', 'For Broken Heart', '/tags/for-broken-heart'),
+('for-friends', 'For Friends', '/tags/for-friends'),
+('for-girlfriend', 'For Girlfriend', '/tags/for-girlfriend'),
+('for-her', 'For Her', '/tags/for-her'),
+('for-him', 'For Him', '/tags/for-him'),
+('for-husband', 'For Husband', '/tags/for-husband'),
+('for-making-love', 'For Making Love', '/tags/for-making-love'),
+('for-wife', 'For Wife', '/tags/for-wife'),
+('forever-love-phrases', 'Forever Love', '/tags/forever-love-phrases'),
+('funny-love-phrases', 'Funny Love', '/tags/funny-love-phrases'),
+('funny-whatsapp-status', 'Funny Whatsapp Status', '/tags/funny-whatsapp-status'),
+('good-love-phrases', 'Good Love', '/tags/good-love-phrases'),
+('happy-love-phrases', 'Happy Love', '/tags/happy-love-phrases'),
+('hurt-love-phrases', 'Hurt Love', '/tags/hurt-love-phrases'),
+('i-love-you-phrases', 'I love You', '/tags/i-love-you-phrases'),
+('in-love-phrases', 'In Love', '/tags/in-love-phrases'),
+('inspirational-love-phrases', 'Inspirational Love', '/tags/inspirational-love-phrases'),
+('love-live-phrases', 'Love Live', '/tags/love-live-phrases'),
+('love-lyrics', 'Love Lyrics', '/tags/love-lyrics'),
+('love-messages', 'Love Meesages', '/tags/love-messages'),
+('love-poems', 'Love Poems', '/tags/love-poems'),
+('love-sayings', 'Love Sayings', '/tags/love-sayings'),
+('movie-love-phrases', 'Movie Love', '/tags/movie-love-phrases'),
+('quotes', 'Quotes', '/tags/quotes'),
+('real-love-phrases', 'Real Love', '/tags/real-love-phrases'),
+('romantic-love-phrases', 'Romantic Love', '/tags/romantic-love-phrases'),
+('sad-love-phrases', 'Sad Love', '/tags/sad-love-phrases'),
+('secret-love-phrases', 'Secret Love', '/tags/secret-love-phrases'),
+('self-love-phrases', 'Self Love', '/tags/self-love-phrases'),
+('true-love-phrases', 'True Love', '/tags/true-love-phrases'),
+('whatsapp-love-status', 'Whatsapp Love Status', '/tags/whatsapp-love-status'),
+('whatsapp-sad-status', 'Whatsapp Sad Status', '/tags/whatsapp-sad-status');
 
 --
 -- Índices para tablas volcadas

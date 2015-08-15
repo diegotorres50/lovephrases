@@ -1,5 +1,13 @@
 {% extends 'LovePhrasesAppBundle::layout.html.twig' %}
 
+{# Incluimos la plantilla del menu de opciones #}
+{% block top_navigation %}
+	{# si existe el array de articulos #}
+	{% if data.sections is defined and data.sections is not null and data.sections is not empty %}
+		{{ include('LovePhrasesAppBundle:Common:topnavigation.html.twig', { 'data': data.sections }) }}
+	{% endif %}
+			
+{% endblock %}
 
 {# renderizamos los articulos #}
 

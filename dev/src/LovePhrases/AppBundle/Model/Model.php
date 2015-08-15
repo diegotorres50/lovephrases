@@ -198,6 +198,64 @@ class Model
 
     }
 
+    public function getLandingtag($tag)
+    {
+        //@diegotorres50: metodo que consulta todos los articulos del home
+        //
+       
+        $sql = array();
+
+        //Query para consultas
+        $sql[] = "SELECT articles.article_id, DATE_FORMAT(articles.article_modified,'%d/%m/%Y') as article_modified, DATE_FORMAT(articles.article_created,'%d/%m/%Y') as article_created, articles.article_title, articles.article_alias, articles.article_lead, articles.article_description, articles.article_section, sections.section_name, sections.section_path, articles.article_img, articles.article_type, articles.article_author, articles.article_credit";
+        $sql[] = "FROM articles, article_tags, tags, sections";
+        $sql[] = "where articles.article_id = article_tags.article_id and";
+        $sql[] = "article_tags.tag_alias = tags.tag_alias and";
+        $sql[] = "tags.tag_alias = '" . $tag . "' and";
+        $sql[] = "sections.section_alias = articles.article_section and";
+        $sql[] = "articles.article_status = 'PUBLISHED'";
+        $sql[] = "order by articles.article_modified desc;";
+
+        //Armamos la consulta completa con espacios entre los segmentos del query
+        $sql = implode(" ", $sql);
+
+        $result = mysqli_query($this->conexion, $sql);
+
+        if(!$result) {
+
+            return array('errorMsg' => 'No ha sido posible realizar la consulta del landingtag: ' . mysqli_error($this->conexion));
+        }
+
+
+        // Numeric array
+        //$row=mysqli_fetch_array($result,MYSQLI_NUM);
+        //printf ("%s (%s)\n",$row[0],$row[1]);
+
+        // Associative array
+        //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+        //printf ("%s (%s)\n",$row["user_id"],$row["user_role"]);
+
+        $rows_found = array();
+
+        while ($row = mysqli_fetch_assoc($result))
+        {
+
+            //$row es un array de columnas
+            $row = array_filter($row); //Esto evita que se filtren valores nulos, con un solo valor nulo anula otro array al concatenarse
+
+            $rows_found[] = $row; //Solo valores no nulos
+        }
+
+        // Free result set
+        mysqli_free_result($result);  
+        
+        //mysqli_close($this->conexion); No cerremos la conexion para reusarla    
+
+        $data = array($rows_found); //Todas las filas
+
+        return $data;
+
+    }
+
     public function getDataFromSingleTable($values)
     {
         //@diegotorres50: metodo que consulta una unica tabla, reusable

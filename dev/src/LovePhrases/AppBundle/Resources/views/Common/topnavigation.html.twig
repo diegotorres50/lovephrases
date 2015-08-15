@@ -1,0 +1,47 @@
+<li class='current'>
+	<a class='current' href="{{ path('lovephrases_default_homepage') }}">Home</a>
+</li>
+<li>
+	<a href="">More Phrases</a>
+	<ul>
+
+		{# recorremos el array de secciones para el menu #}
+		{% for section in data %}
+			<li><a href="{{ section.section_path }}">{{ section.section_name }}</a></li>
+		{% endfor %}
+
+	</ul>
+</li>
+
+<li>
+	<a href="">Poems & Quotes</a>
+	<ul>
+		<li><a href="/tags/quotes">Quotes</a></li>
+		<li><a href="/tags/love-sayings">Love Sayings</a></li>
+		<li><a href="/tags/love-poems">Love Poems</a></li>
+		<li><a href="/tags/love-messages">Love Messages</a></li>
+		<li><a href="/tags/love-lyrics">Love Lyrics</a></li>
+
+	</ul>
+</li>
+
+<li>
+	<a href="">Post Formats</a>
+	<ul>
+		<li><a href="/category/single">Standard Post</a></li>
+		<li><a href="/category/image">Image Post</a></li>
+		<li><a href="/category/gallery">Image Gallery Post</a></li>
+		<li><a href="/category/video">Video Post</a></li>
+		<li><a href="/category/audio">Audio Post</a></li>
+		<li><a href="/category/quote">Quote Post</a></li>
+		<li><a href="/category/link">Link Post</a></li>
+	</ul>
+</li>
+<!--
+<li>
+	<a href="single-alt.html">Alternate Post Layout</a>
+</li>
+<li>
+	<a href="fullwidth.html">Fullwidth Template</a>
+</li>
+-->
