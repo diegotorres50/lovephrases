@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
 --
 -- Volcado de datos para la tabla `article_tags`
 --
-
+--buu
 INSERT INTO `article_tags` (`article_id`, `tag_alias`) VALUES
 (1, 'for-broken-heart'),
 (1, 'for-her'),
