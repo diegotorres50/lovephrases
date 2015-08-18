@@ -198,11 +198,26 @@ class Model
 
     }
 
-    public function getLandingtag($tag)
+    public function getLandingtag($values)
     {
         //@diegotorres50: metodo que consulta todos los articulos del home
         //
        
+        if(!isset($values) || empty($values) || !is_array($values)) 
+            return array('errorMsg' => 'Se esperaba un objeto como parámetro del método');
+
+        /* Estructura del parametro esperado
+        $values['TAG_ALIAS'] = 'love-phrases';
+
+        $values['POSITION'] = 'PRIMARY';
+
+        $values['LIMIT'] = array( 
+            'OFFSET' => 0, //Desde la fila
+            'ROW_COUNT' => 1 //Cantidad
+            );        
+
+        */
+
         $sql = array();
 
         //Query para consultas
@@ -210,10 +225,29 @@ class Model
         $sql[] = "FROM articles, article_tags, tags, sections";
         $sql[] = "where articles.article_id = article_tags.article_id and";
         $sql[] = "article_tags.tag_alias = tags.tag_alias and";
-        $sql[] = "tags.tag_alias = '" . $tag . "' and";
+
+        //Si se especifica tagname
+        if(isset($values['TAG_ALIAS']) && !empty($values['TAG_ALIAS']) ) {
+            $sql[] = "tags.tag_alias = '" . $values['TAG_ALIAS'] . "' and";
+        }else {
+            $sql[] = "tags.tag_alias = 'love-phrases' and";
+        }
+
         $sql[] = "sections.section_alias = articles.article_section and";
+
+        //Si se especifica posicion
+        if(isset($values['POSITION']) && !empty($values['POSITION']) ) {
+            $sql[] = "articles.article_position = '" . $values['POSITION'] . "' and";
+        } 
+
         $sql[] = "articles.article_status = 'PUBLISHED'";
-        $sql[] = "order by articles.article_modified desc;";
+        
+        $sql[] = "order by articles.article_modified desc";
+
+        //Si se especifica paginar la consulta
+        if(isset($values['LIMIT']) && !empty($values['LIMIT']) && is_array($values['LIMIT'])) {
+            $sql[] = "LIMIT " . $values['LIMIT']['OFFSET'] . ", " . $values['LIMIT']['ROW_COUNT'];
+        }        
 
         //Armamos la consulta completa con espacios entre los segmentos del query
         $sql = implode(" ", $sql);

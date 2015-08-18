@@ -152,9 +152,9 @@ class ContentController extends Controller
     }
 
      /**
-     * @Route("/content/tags/{tag}/{var}", defaults={"var" = "development", "tag" = "love-phrases"}, name="lovephrases_content_landingtag") 
+     * @Route("/content/tags/{tag}/{offset}/{row_count}/{position}", requirements={"offset" = "\d+", "row_count" = "\d+"}, defaults={"offset" = 0, "row_count" = 10, "position" = ""}, name="lovephrases_content_landingtag") 
      */
-    public function landingtagAction(Request $request, $tag, $var)
+    public function landingtagAction(Request $request, $tag, $offset, $row_count, $position)
     {
 
         $thereIsError = FALSE;
@@ -166,12 +166,15 @@ class ContentController extends Controller
 
         $datetime = new \DateTime("now");
 
-        if(!empty($var) && $var != 'production') $data['env'] = $var; //Para mostrar que esta en caliente el json pero no se esta guardando
-
         $data['datetime'] = $datetime->format('Y-m-d H:i:s');
         $data['alias'] = 'landingtag';
         $data['label'] = $tag;
         $data['path'] = '/tags/' . $tag;
+
+        $data['limit']['offset'] = $offset;
+        $data['limit']['row_count'] = $row_count;
+
+        if(isset($position) && !empty($position) ) $data['position'] = $position;
 
         //Instanciamos el modelo de conexion mysql usando el modelo de conexion
         $m = new Model(
@@ -218,7 +221,20 @@ class ContentController extends Controller
         } else $data['sections'] = $getSections['rows_found'];
 
         //Tratamos de consultar la lista de articulos en la tabla de mysql
-        $getLandingtag = $m->getLandingtag($tag);
+        //
+        
+        $values = array();
+
+        $values['TAG_ALIAS'] = $tag;
+
+        $values['POSITION'] = $position;
+
+        $values['LIMIT'] = array( 
+            'OFFSET' => $offset, //Desde la fila
+            'ROW_COUNT' => $row_count //Cantidad
+            );
+
+        $getLandingtag = $m->getLandingtag($values);
 
         //var_dump($getHomePrimaryArticles); exit;
 
@@ -263,6 +279,7 @@ class ContentController extends Controller
         $response = json_encode($data);
 
         //Si en la url llega el parametro con el valor 'production' generamos el archivo fisico del feed
+        /*
         if($var == 'production') {
             // 
             //Preparamos el filesystem para guardar el json en un archivo fisico
@@ -280,7 +297,7 @@ class ContentController extends Controller
             } catch (IOExceptionInterface $e) {
                 echo "An error occurred while creating your directory at ".$e->getPath();
             }
-        }
+        }*/
             
         return new Response($response);
         //
