@@ -34,6 +34,7 @@ class ContentController extends Controller
 
         $data['datetime'] = $datetime->format('Y-m-d H:i:s');
         $data['alias'] = 'home';
+        $data['tag'] = 'for-her'; //debe ser love-phrases
         $data['label'] = 'Portada';
         $data['path'] = '/';
 
@@ -152,9 +153,10 @@ class ContentController extends Controller
     }
 
      /**
-     * @Route("/content/tags/{tag}/{offset}/{row_count}/{position}", requirements={"offset" = "\d+", "row_count" = "\d+"}, defaults={"offset" = 0, "row_count" = 10, "position" = ""}, name="lovephrases_content_landingtag") 
+     * @Route("/content/tags/{tag}/{offset}/{row_count}/{position}.{format}", requirements={"offset" = "\d+", "row_count" = "\d+", "format" = "html|json"}, defaults={"offset" = 0, "row_count" = 10, "position" = "", "format" = "json"}, name="lovephrases_content_landingtag") 
      */
-    public function landingtagAction(Request $request, $tag, $offset, $row_count, $position)
+    
+    public function landingtagAction(Request $request, $tag, $offset, $row_count, $position, $format)
     {
 
         $thereIsError = FALSE;
@@ -168,6 +170,7 @@ class ContentController extends Controller
 
         $data['datetime'] = $datetime->format('Y-m-d H:i:s');
         $data['alias'] = 'landingtag';
+        $data['tag'] = $tag;
         $data['label'] = $tag;
         $data['path'] = '/tags/' . $tag;
 

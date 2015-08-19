@@ -1,0 +1,51 @@
+<div id="page">
+	<div id="main">
+		<div id="box-container">
+			<div id="entry-list" class="row">
+
+				<!-- @diegotorres50: aqui los bloques de articulos -->
+
+				{# si existe el array de articulos #}
+				{% if data.articles is defined and data.articles is not null and data.articles is not empty %}
+
+					{# recorremos el array, segun el tipo de formato vamos renderizando #}
+					{% for article in data.articles %}
+
+						{% if (article.article_type == 'AUDIO') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:audio.html.twig', { 'data': article }) }}
+						{% endif %}
+
+						{% if (article.article_type == 'GALLERY') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:gallery.html.twig', { 'data': article }) }}
+						{% endif %}
+
+						{% if (article.article_type == 'IMAGE') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:image.html.twig', { 'data': article }) }}
+						{% endif %}
+
+						{% if (article.article_type == 'LINK') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:link.html.twig', { 'data': article }) }}
+						{% endif %}
+
+						{% if (article.article_type == 'QUOTE') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:quote.html.twig', { 'data': article }) }}
+						{% endif %}
+
+						{% if (article.article_type == 'STANDARD') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:standard.html.twig', { 'data': article }) }}
+						{% endif %}									
+
+						{% if (article.article_type == 'VIDEO') %}
+							{{ include('LovePhrasesAppBundle:Section/Article:video.html.twig', { 'data': article }) }}
+						{% endif %}
+
+					{% endfor %}
+
+				{% endif %}	
+
+
+			</div> <!-- .entry-list -->
+		</div>
+		<div id="paging"><a class="current nav-prev" href="{{ path('lovephrases_loadmorearticles', { 'tag': data.tag, 'offset': (data.limit.offset + data.limit.row_count), 'row_count': data.limit.row_count, 'position': data.position }) }}">Next Set of Posts</a></div>
+	</div> <!-- #main -->
+</div> <!-- #page -->
