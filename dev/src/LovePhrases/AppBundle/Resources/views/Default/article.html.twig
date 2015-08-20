@@ -1,0 +1,54 @@
+{% extends 'LovePhrasesAppBundle::layout.html.twig' %}
+
+{# Incluimos la plantilla del menu de opciones #}
+{% block top_navigation %}
+	{# si existe el array de articulos #}
+	{% if data.sections is defined and data.sections is not null and data.sections is not empty %}
+		{{ include('LovePhrasesAppBundle:Common:topnavigation.html.twig', { 'data': data.sections }) }}
+	{% endif %}
+			
+{% endblock %}
+
+{# renderizamos los articulos #}
+
+{% block content_articles %}
+
+	{# si existe el array de articulos #}
+	{% if data.articles is defined and data.articles is not null and data.articles is not empty %}
+
+		{# recorremos el array, segun el tipo de formato vamos renderizando #}
+		{% for article in data.articles %}
+
+			{% if (article.article_type == 'AUDIO') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:audio.html.twig', { 'data': article }) }}
+			{% endif %}
+
+			{% if (article.article_type == 'GALLERY') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:gallery.html.twig', { 'data': article }) }}
+			{% endif %}
+
+			{% if (article.article_type == 'IMAGE') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:image.html.twig', { 'data': article }) }}
+			{% endif %}
+
+			{% if (article.article_type == 'LINK') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:link.html.twig', { 'data': article }) }}
+			{% endif %}
+
+			{% if (article.article_type == 'QUOTE') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:quote.html.twig', { 'data': article }) }}
+			{% endif %}
+
+			{% if (article.article_type == 'STANDARD') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:standard.html.twig', { 'data': article }) }}
+			{% endif %}									
+
+			{% if (article.article_type == 'VIDEO') %}
+				{{ include('LovePhrasesAppBundle:Section/Article:video.html.twig', { 'data': article }) }}
+			{% endif %}
+
+		{% endfor %}
+
+	{% endif %}	
+
+{% endblock %}	
