@@ -9,6 +9,16 @@
 			
 {% endblock %}
 
+{# si existe el label #}
+{% if data.label is defined and data.label is not null and data.label is not empty %}
+
+	{# Incluimos el titulo de la seccion #}
+	{% block content_title %}
+			{{data.label}}
+	{% endblock %}
+
+{% endif %}
+
 {# si existe el tag #}
 {% if data.tag is defined and data.tag is not null and data.tag is not empty %}
 

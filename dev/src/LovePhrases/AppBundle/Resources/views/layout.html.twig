@@ -80,7 +80,7 @@
 <header id="header">
 	<div class="head-wrap">
 		<hgroup id="logo" class="row">
-			<h1><a href=""><img src="{{ asset('bundles/lovephrasesapp/images/dummy/logo.png') }}" alt=""></a></h1>
+			<h1><a href="/"><img src="{{ asset('bundles/lovephrasesapp/images/dummy/logo.png') }}" alt=""></a></h1>
 		</hgroup>
 
 		<div id="nav-hold">
@@ -119,6 +119,9 @@
 
 <div id="page">
 	<div id="main">
+
+		<h1 class="entry-title">{% block content_title %}{% endblock %}</h1>	
+
 		<div id="box-container">
 			<div id="entry-list" class="row">
 
@@ -132,7 +135,15 @@
 
 			</div> <!-- .entry-list -->
 		</div>
-		<div id="paging"><a class="nav-prev" href="{{ path('lovephrases_loadmorearticles', { 'tag': data.tag, 'offset': 0, 'row_count': 5, 'position': 'Secundary' }) }}">Next Set of Posts</a></div>
+
+		{% block content_paging %}
+
+		<!-- @diegotorres50 aqui el paging para cargar mas articulos
+		================================================== -->
+
+
+		{% endblock %}
+
 	</div> <!-- #main -->
 </div> <!-- #page -->
 

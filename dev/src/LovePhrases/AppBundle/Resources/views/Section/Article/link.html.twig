@@ -1,14 +1,30 @@
 <article class="entry box-item format-standard ur-three columns">
 	<div class="box-wrap">
 
+		{% if data.article_section is defined and data.article_section is not null and data.article_section is not empty %}
+			<span class="entry-section">
+				<a href="{{ data.section_path }}">{{ data.section_name }}</a>
+			</span>
+		{% endif %}
+
+		{% if data.article_modified is defined and data.article_modified is not null and data.article_modified is not empty %}
+			<time datetime="{{ data.article_modified }}">{{ data.article_modified }}</time>
+		{% endif %}
+
+
 		<div class="link-container">
-			<a href="http://www.cssigniter.com" target="_blank">http://www.cssigniter.com</a>
+			<a href="{{ data.article_credit }}" target="_blank">{{ data.article_credit }}</a>
 		</div>
 
-		<div class="entry-meta">
-			<a class="love-btn" href="" title="Click to love this"><span class="love-no">12</span></a>
-			<a class="comment-no" href=""  title="14 Comments">14</a>
-			<a class="permalink" href="">Permalink</a>
-		</div>
+		<!-- Sharingtool
+  		================================================== -->
+		{{ include('LovePhrasesAppBundle:Common:sharingtool.html.twig', { 'data': data }) }}
+
+		<!-- Tags Module
+  		================================================== -->
+  		{% if data.tags is defined and data.tags is not null and data.tags is not empty %}
+			{{ include('LovePhrasesAppBundle:Common:tagsmodule.html.twig', { 'data': data.tags }) }}
+		{% endif %}
+
 	</div>
 </article>
