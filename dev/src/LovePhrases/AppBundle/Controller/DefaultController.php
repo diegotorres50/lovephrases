@@ -143,8 +143,11 @@ class DefaultController extends Controller
 
             $path = $prefix . $domain . '/content/article/'. $query_id;
 
-        }    
+        } else if (isset($query_s) && !empty($query_s)) {
 
+            $path = $prefix . $domain . '/content/search/'. $query_s;
+
+        }    
         //@diegotorres50: los json al vuelo no se pueden tratar con file_get_contents(), en vez de eso se debe usar curl de php cuando no hay archivo fisico
 
         //$content = file_get_contents($path);

@@ -39,6 +39,10 @@ class ContentController extends Controller
         $data['label'] = 'Portada';
         $data['path'] = '/';
 
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = 'http://';
+        $data['domain'] = $prefix . $domain;
+
         //Instanciamos el modelo de conexion mysql usando el modelo de conexion
         $m = new Model(
             $this->container->getParameter('database_name'), 
@@ -178,6 +182,10 @@ class ContentController extends Controller
 
         $data['limit']['offset'] = $offset;
         $data['limit']['row_count'] = $row_count;
+
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = 'http://';
+        $data['domain'] = $prefix . $domain;
 
         if(isset($position) && !empty($position) ) $data['position'] = $position;
 
@@ -333,6 +341,10 @@ class ContentController extends Controller
         $data['label'] = str_replace("-", " ", $alias);
         $data['path'] = '/';
 
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = 'http://';
+        $data['domain'] = $prefix . $domain;
+
         //Instanciamos el modelo de conexion mysql usando el modelo de conexion
         $m = new Model(
             $this->container->getParameter('database_name'), 
@@ -450,7 +462,7 @@ class ContentController extends Controller
      /**
      * @Route("/content/article/{id}", defaults={"id" = 1}, name="lovephrases_content_article") 
      */
-    public function searchAction(Request $request, $id)
+    public function searcharticleAction(Request $request, $id)
     {
 
         $thereIsError = FALSE;
@@ -468,6 +480,10 @@ class ContentController extends Controller
         $data['tag'] = 'love-phrases'; 
         $data['label'] = 'Love Phrase';
         $data['path'] = '/';
+
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = 'http://';
+        $data['domain'] = $prefix . $domain;
 
         //Instanciamos el modelo de conexion mysql usando el modelo de conexion
         $m = new Model(
@@ -582,5 +598,146 @@ class ContentController extends Controller
         return new Response($response);
         //
         //return $response; @diegotorres50 use esto si usa JsonResponse()
-    }    
+    }
+
+     /**
+     * @Route("/content/search/{query}", defaults={"query" = "love-phrases"}, name="lovephrases_content_search") 
+     */
+    public function searchallAction(Request $request, $query)
+    {
+
+        $thereIsError = FALSE;
+        $errorsList = array();
+
+
+        //Defini el array del json
+        $data = array();
+
+        $datetime = new \DateTime("now");
+
+        $data['datetime'] = $datetime->format('Y-m-d H:i:s');
+        $data['type'] = 'search';
+        $data['alias'] = 'love-phrases';
+        $data['tag'] = 'love-phrases'; 
+        $data['label'] = $query;
+        $data['path'] = '/';
+
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = 'http://';
+        $data['domain'] = $prefix . $domain;
+
+        //Instanciamos el modelo de conexion mysql usando el modelo de conexion
+        $m = new Model(
+            $this->container->getParameter('database_name'), 
+            $this->container->getParameter('database_user'),
+            $this->container->getParameter('database_password'),
+            $this->container->getParameter('database_host')
+        );
+
+        //Seteamos en un array los parametros del query para mysql
+        $values = array();
+
+        //Seteamos que tabla vamos a consultar
+        $values['TABLE'] = 'sections';
+
+        //Seteamos los alias de los campos de deseamos traer en el query y un lbl para la vista
+        $values['FIELDS'] = array( //identificador_campo => aliascustomizado_campo
+            'section_alias' => 'alias',
+            'section_name' => 'name',
+            'section_path' => 'path'
+            );
+
+        //Seteamos el ordenamiento por defecto del query
+        $values['ORDER_BY'] = array( 
+            'section_order asc' //ordenar por id para traerlo alfabeticamente
+            );
+
+        //Seteamos el paginador de la consulta para mysql
+        $values['LIMIT'] = array( 
+            'OFFSET' => 0, //Desde la fila que se desea mostrar. Esto es un parametro de la ruta
+            'ROW_COUNT' => 1000 //Cantidad maximo de registros a traer. Esto es un parametro de la ruta
+            );
+
+        //Tratamos de consultar la lista de usuarios en la tabla de mysql
+        $getSections = $m->getDataFromSingleTable($values);
+
+        //Si el query falla mostramos un error
+        if (!empty($getSections) && is_array($getSections) && isset($getSections['errorMsg'])) {
+            $thereIsError = TRUE;
+            $errorsList[]['error'] = $getSections['errorMsg'];
+        } else if (isset($getSections['rows_found']) && empty($getSections['rows_found'])) { //Si no hay registros, mostramos un warning
+            $thereIsError = TRUE;
+            $errorsList[]['error'] = 'No sections';
+        } else $data['sections'] = $getSections['rows_found'];
+
+        //Tratamos de consultar la lista de articulos en la tabla de mysql
+        $getSearchResults = $m->getSearchResults($query);
+
+        //var_dump($getHomePrimaryArticles); exit;
+
+        //Si el query falla mostramos un error
+        if (!empty($getSearchResults) && is_array($getSearchResults) && isset($getSearchResults['errorMsg'])) {
+            $thereIsError = TRUE;
+            $errorsList[]['error'] = $getSearchResults['errorMsg'];
+        } else if (isset($getSearchResults['rows_found']) && empty($getSearchResults['rows_found'])) { //Si no hay registros, mostramos un warning
+            $thereIsError = TRUE;
+            $errorsList[]['error'] = 'No results';
+        } else  {
+
+            //$data['articles'] = $getHomePrimaryArticles[0]; //ojo, el array que devuelve la consulta no debe contener ni un solo valor nulo pues un valor nulo anula todo el array 
+
+            $_articles = array();
+
+            $_i = 0;
+
+            foreach ($getSearchResults[0] as $article) {
+                //Tratamos de consultar la lista de parametros por articulo en la tabla de mysql
+                $_articles[$_i] = $article;
+                $_parameter = $m->getArticleParameters($article['article_id']);  //OJO FALTA VALIDAR EL RESULTADO DE LA FUNCION  
+                $_tag = $m->getArticleTags($article['article_id']);  //OJO FALTA VALIDAR EL RESULTADO DE LA FUNCION     
+                $_articles[$_i]['parameters'] = $_parameter[0];
+                $_articles[$_i]['tags'] = $_tag[0];
+                $_i ++;        
+            }   
+            
+            $data['articles'] = $_articles;
+
+        }
+
+        //
+        if($thereIsError) $data = $errorsList;
+
+        //JSON response: http://symfony.com/doc/current/components/http_foundation/introduction.html   
+        //@diegotorres50 prefiero no usar este metodo porque me ponen textos de cabacere, usare json_encode() 
+        //$response = new JsonResponse();
+        //$response->setData($data);
+
+        //Codificamos el array en formato json
+        $response = json_encode($data);
+
+        //Si en la url llega el parametro con el valor 'production' generamos el archivo fisico del feed
+        /*
+        if($var == 'production') {
+            // 
+            //Preparamos el filesystem para guardar el json en un archivo fisico
+            $fs = new Filesystem();
+
+            //Ruta del directorio de contenido
+            $content_path = $this->container->getParameter('kernel.root_dir') . '/../web/bundles/lovephrasesapp/content/love-phrases/' . $alias . '/';
+
+            //Nombre del archivo home
+            $json_file = 'home.json';
+
+            try {
+                //Con el metodo dumpfile() guardamos el responseen un archivo
+                $fs->dumpFile($content_path . $json_file, $response);
+            } catch (IOExceptionInterface $e) {
+                echo "An error occurred while creating your directory at ".$e->getPath();
+            }
+        }
+        */    
+        return new Response($response);
+        //
+        //return $response; @diegotorres50 use esto si usa JsonResponse()
+    }        
 }
