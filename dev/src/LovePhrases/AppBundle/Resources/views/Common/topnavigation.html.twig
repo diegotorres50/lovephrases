@@ -16,15 +16,16 @@
 <li>
 	<a href="">Poems & Quotes</a>
 	<ul>
-		<li><a href="/tags/quotes">Quotes</a></li>
-		<li><a href="/tags/love-sayings">Love Sayings</a></li>
-		<li><a href="/tags/love-poems">Love Poems</a></li>
-		<li><a href="/tags/love-messages">Love Messages</a></li>
-		<li><a href="/tags/love-lyrics">Love Lyrics</a></li>
+		<li><a href="{{ app.request.getSchemeAndHttpHost() }}/tags/quotes">Quotes</a></li>
+		<li><a href="{{ app.request.getSchemeAndHttpHost() }}/tags/love-sayings">Love Sayings</a></li>
+		<li><a href="{{ app.request.getSchemeAndHttpHost() }}/tags/love-poems">Love Poems</a></li>
+		<li><a href="{{ app.request.getSchemeAndHttpHost() }}/tags/love-messages">Love Messages</a></li>
+		<li><a href="{{ app.request.getSchemeAndHttpHost() }}/tags/love-lyrics">Love Lyrics</a></li>
 
 	</ul>
 </li>
 
+<!--
 <li>
 	<a href="">Post Formats</a>
 	<ul>
@@ -37,6 +38,8 @@
 		<li><a href="/category/link">Link Post</a></li>
 	</ul>
 </li>
+-->
+
 <!--
 <li>
 	<a href="single-alt.html">Alternate Post Layout</a>

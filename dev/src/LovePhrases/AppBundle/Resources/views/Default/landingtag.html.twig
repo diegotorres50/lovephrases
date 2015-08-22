@@ -22,10 +22,10 @@
 {# si existe el tag #}
 {% if data.tag is defined and data.tag is not null and data.tag is not empty %}
 
-	{# Incluimos el paging #}
+	{# Incluimos el paging, ojo que el despliegue de landing tag es cronologico, como se ordena por fecha iniciamos el offset desde 5 en 5 ya que el home del tag por defecto trae las primeras 5 #}
 	{% block content_paging %}
 
-			<div id="paging"><a class="nav-prev" href="{{ path('lovephrases_loadmorearticles', { 'tag': data.tag, 'offset': 0, 'row_count': 5, 'position': 'Secundary' }) }}">Next Set of Posts</a></div>
+			<div id="paging"><a class="nav-prev" href="{{ path('lovephrases_loadmorearticles', { 'tag': data.tag, 'offset': 5, 'row_count': 5, 'position': 'Secundary' }) }}">Next Set of Posts</a></div>
 
 	{% endblock %}
 
